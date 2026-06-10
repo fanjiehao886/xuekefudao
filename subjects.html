@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>学科大全 - 学科辅导网</title>
+  <meta name="keywords" content="学科辅导,语文辅导,数学辅导,英语辅导,物理辅导,化学辅导,小学辅导,初中辅导,高中辅导,竞赛辅导">
+  <meta name="description" content="学科辅导网涵盖小学、初中、高中全科目辅导，语文/数学/英语/物理/化学/生物/历史/地理/政治/奥数/编程/艺术，精准匹配好老师。">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .subjects-hero {
+      background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+      color: #fff;
+      text-align: center;
+      padding: 60px 20px 50px;
+    }
+    .subjects-hero h1 { font-size: 32px; margin-bottom: 12px; font-weight: 700; }
+    .subjects-hero p { font-size: 17px; opacity: 0.9; max-width: 600px; margin: 0 auto; line-height: 1.7; }
+    .subjects-container { max-width: 1100px; margin: 0 auto; padding: 40px 20px 60px; }
+
+    .category-section { margin-bottom: 40px; }
+    .category-title {
+      font-size: 22px; font-weight: 700; color: #1F2937;
+      padding-bottom: 10px; border-bottom: 3px solid #4F46E5;
+      margin-bottom: 20px; display: flex; align-items: center; gap: 8px;
+    }
+    .category-title .icon { font-size: 24px; }
+
+    .subject-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .subject-item {
+      background: #fff; border: 1px solid #E5E7EB; border-radius: 12px;
+      padding: 20px; transition: all 0.25s; cursor: pointer;
+      text-decoration: none; color: inherit; display: block;
+    }
+    .subject-item:hover {
+      border-color: #4F46E5; box-shadow: 0 4px 16px rgba(79,70,229,0.12);
+      transform: translateY(-2px);
+    }
+    .subject-item .subj-icon { font-size: 28px; margin-bottom: 8px; }
+    .subject-item .subj-title { font-size: 17px; font-weight: 600; color: #1F2937; margin-bottom: 6px; }
+    .subject-item .subj-desc { font-size: 13px; color: #6B7280; line-height: 1.6; }
+    .subject-item .subj-tags { margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap; }
+    .subject-item .subj-tag {
+      font-size: 11px; background: #EEF2FF; color: #4F46E5;
+      padding: 2px 8px; border-radius: 10px;
+    }
+
+    .cta-bar {
+      background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+      color: #fff; text-align: center; padding: 50px 20px;
+    }
+    .cta-bar h2 { font-size: 26px; margin-bottom: 12px; }
+    .cta-bar p { font-size: 16px; opacity: 0.9; margin-bottom: 24px; }
+    .cta-bar .btn-white {
+      display: inline-block; background: #fff; color: #4F46E5;
+      padding: 12px 36px; border-radius: 8px; font-size: 16px;
+      font-weight: 600; text-decoration: none; transition: all 0.2s;
+    }
+    .cta-bar .btn-white:hover { transform: scale(1.05); box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+
+    @media (max-width: 600px) {
+      .subjects-hero { padding: 40px 16px 36px; }
+      .subjects-hero h1 { font-size: 24px; }
+      .subject-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .subject-item { padding: 14px; }
+      .subject-item .subj-icon { font-size: 22px; }
+      .subject-item .subj-title { font-size: 15px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- 导航栏 -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">📖 <span>学科辅导网</span></a>
+    <div class="nav-links">
+      <a href="subjects.html">学科大全</a>
+      <a href="teachers.html">找老师</a>
+      <a href="about.html">关于我们</a>
+      <a href="index.html#consult" class="nav-cta">免费咨询</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="subjects-hero">
+  <h1>📚 学科大全</h1>
+  <p>小学·初中·高中·竞赛·艺体·留学，全科目一站搞定<br>每个科目都有经过筛选的优质老师，精准匹配</p>
+</div>
+
+<div class="subjects-container">
+
+  <!-- 小学 -->
+  <div class="category-section">
+    <h2 class="category-title"><span class="icon">🌱</span>小学辅导</h2>
+    <div class="subject-grid">
+      <a href="teachers.html?subject=语文&grade=小学" class="subject-item">
+        <div class="subj-icon">📝</div>
+        <div class="subj-title">小学语文</div>
+        <div class="subj-desc">拼音识字、阅读理解、作文写作，打牢语文基础</div>
+        <div class="subj-tags"><span class="subj-tag">1-6年级</span><span class="subj-tag">作文</span><span class="subj-tag">阅读</span></div>
+      </a>
+      <a href="teachers.html?subject=数学&grade=小学" class="subject-item">
+        <div class="subj-icon">🔢</div>
+        <div class="subj-title">小学数学</div>
+        <div class="subj-desc">计算训练、应用题、思维拓展，培养数学兴趣</div>
+        <div class="subj-tags"><span class="subj-tag">1-6年级</span><span class="subj-tag">计算</span><span class="subj-tag">思维</span></div>
+      </a>
+      <a href="teachers.html?subject=英语&grade=小学" class="subject-item">
+        <div class="subj-icon">🔤</div>
+        <div class="subj-title">小学英语</div>
+        <div class="subj-desc">自然拼读、词汇积累、口语启蒙，轻松学英语</div>
+        <div class="subj-tags"><span class="subj-tag">1-6年级</span><span class="subj-tag">口语</span><span class="subj-tag">剑桥</span></div>
+      </a>
+      <a href="teachers.html?subject=奥数&grade=小学" class="subject-item">
+        <div class="subj-icon">🏆</div>
+        <div class="subj-title">小学奥数</div>
+        <div class="subj-desc">逻辑思维、竞赛入门、培优拔高，冲击杯赛</div>
+        <div class="subj-tags"><span class="subj-tag">3-6年级</span><span class="subj-tag">竞赛</span><span class="subj-tag">培优</span></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- 初中 -->
+  <div class="category-section">
+    <h2 class="category-title"><span class="icon">📖</span>初中辅导</h2>
+    <div class="subject-grid">
+      <a href="teachers.html?subject=语文&grade=初中" class="subject-item">
+        <div class="subj-icon">📝</div>
+        <div class="subj-title">初中语文</div>
+        <div class="subj-desc">文言文阅读、现代文赏析、考场作文技巧</div>
+        <div class="subj-tags"><span class="subj-tag">7-9年级</span><span class="subj-tag">文言文</span><span class="subj-tag">作文</span></div>
+      </a>
+      <a href="teachers.html?subject=数学&grade=初中" class="subject-item">
+        <div class="subj-icon">📐</div>
+        <div class="subj-title">初中数学</div>
+        <div class="subj-desc">代数几何、函数入门、中考压轴题突破</div>
+        <div class="subj-tags"><span class="subj-tag">7-9年级</span><span class="subj-tag">函数</span><span class="subj-tag">几何</span></div>
+      </a>
+      <a href="teachers.html?subject=英语&grade=初中" class="subject-item">
+        <div class="subj-icon">🔤</div>
+        <div class="subj-title">初中英语</div>
+        <div class="subj-desc">语法体系、阅读理解、听力口语、写作提升</div>
+        <div class="subj-tags"><span class="subj-tag">7-9年级</span><span class="subj-tag">语法</span><span class="subj-tag">中考</span></div>
+      </a>
+      <a href="teachers.html?subject=物理&grade=初中" class="subject-item">
+        <div class="subj-icon">⚡</div>
+        <div class="subj-title">初中物理</div>
+        <div class="subj-desc">声光热力电、实验探究、中考物理冲刺</div>
+        <div class="subj-tags"><span class="subj-tag">8-9年级</span><span class="subj-tag">力学</span><span class="subj-tag">电学</span></div>
+      </a>
+      <a href="teachers.html?subject=化学&grade=初中" class="subject-item">
+        <div class="subj-icon">🧪</div>
+        <div class="subj-title">初中化学</div>
+        <div class="subj-desc">元素化合物、化学方程式、实验题训练</div>
+        <div class="subj-tags"><span class="subj-tag">9年级</span><span class="subj-tag">方程式</span><span class="subj-tag">实验</span></div>
+      </a>
+      <a href="teachers.html?subject=历史&grade=初中" class="subject-item">
+        <div class="subj-icon">📜</div>
+        <div class="subj-title">初中历史</div>
+        <div class="subj-desc">中国史、世界史、中考历史答题技巧</div>
+        <div class="subj-tags"><span class="subj-tag">7-9年级</span><span class="subj-tag">中考</span></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- 高中 -->
+  <div class="category-section">
+    <h2 class="category-title"><span class="icon">🎓</span>高中辅导</h2>
+    <div class="subject-grid">
+      <a href="teachers.html?subject=语文&grade=高中" class="subject-item">
+        <div class="subj-icon">📝</div>
+        <div class="subj-title">高中语文</div>
+        <div class="subj-desc">古诗文鉴赏、议论文写作、高考语文冲刺</div>
+        <div class="subj-tags"><span class="subj-tag">高一-高三</span><span class="subj-tag">高考</span><span class="subj-tag">作文</span></div>
+      </a>
+      <a href="teachers.html?subject=数学&grade=高中" class="subject-item">
+        <div class="subj-icon">📐</div>
+        <div class="subj-title">高中数学</div>
+        <div class="subj-desc">函数导数、解析几何、概率统计、高考压轴</div>
+        <div class="subj-tags"><span class="subj-tag">高一-高三</span><span class="subj-tag">高考</span><span class="subj-tag">压轴题</span></div>
+      </a>
+      <a href="teachers.html?subject=英语&grade=高中" class="subject-item">
+        <div class="subj-icon">🔤</div>
+        <div class="subj-title">高中英语</div>
+        <div class="subj-desc">阅读七选五、完形填空、语法填空、高考作文</div>
+        <div class="subj-tags"><span class="subj-tag">高一-高三</span><span class="subj-tag">高考</span><span class="subj-tag">词汇</span></div>
+      </a>
+      <a href="teachers.html?subject=物理&grade=高中" class="subject-item">
+        <div class="subj-icon">⚡</div>
+        <div class="subj-title">高中物理</div>
+        <div class="subj-desc">力学电磁、实验题、计算题、高考物理冲刺</div>
+        <div class="subj-tags"><span class="subj-tag">高一-高三</span><span class="subj-tag">高考</span><span class="subj-tag">电磁学</span></div>
+      </a>
+      <a href="teachers.html?subject=化学&grade=高中" class="subject-item">
+        <div class="subj-icon">🧪</div>
+        <div class="subj-title">高中化学</div>
+        <div class="subj-desc">有机无机、化学反应原理、实验探究</div>
+        <div class="subj-tags"><span class="subj-tag">高一-高三</span><span class="subj-tag">高考</span><span class="subj-tag">有机</span></div>
+      </a>
+      <a href="teachers.html?subject=生物&grade=高中" class="subject-item">
+        <div class="subj-icon">🧬</div>
+        <div class="subj-title">高中生物</div>
+        <div class="subj-desc">细胞遗传、生态调节、实验设计、选考冲刺</div>
+        <div class="subj-tags"><span class="subj-tag">高一-高三</span><span class="subj-tag">高考</span><span class="subj-tag">遗传</span></div>
+      </a>
+      <a href="teachers.html?subject=历史&grade=高中" class="subject-item">
+        <div class="subj-icon">📜</div>
+        <div class="subj-title">高中历史</div>
+        <div class="subj-desc">中外历史、史料分析、选考历史冲刺</div>
+        <div class="subj-tags"><span class="subj-tag">高一-高三</span><span class="subj-tag">选考</span></div>
+      </a>
+      <a href="teachers.html?subject=地理&grade=高中" class="subject-item">
+        <div class="subj-icon">🌍</div>
+        <div class="subj-title">高中地理</div>
+        <div class="subj-desc">自然地理、人文地理、区域可持续发展</div>
+        <div class="subj-tags"><span class="subj-tag">高一-高三</span><span class="subj-tag">选考</span></div>
+      </a>
+      <a href="teachers.html?subject=政治&grade=高中" class="subject-item">
+        <div class="subj-icon">📋</div>
+        <div class="subj-title">高中政治</div>
+        <div class="subj-desc">经济生活、政治生活、文化生活、哲学</div>
+        <div class="subj-tags"><span class="subj-tag">高一-高三</span><span class="subj-tag">选考</span></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- 特色课程 -->
+  <div class="category-section">
+    <h2 class="category-title"><span class="icon">⭐</span>特色课程</h2>
+    <div class="subject-grid">
+      <a href="teachers.html?subject=奥数" class="subject-item">
+        <div class="subj-icon">🏆</div>
+        <div class="subj-title">奥数/竞赛</div>
+        <div class="subj-desc">数学竞赛、物理竞赛、信息学奥赛，冲击省一国奖</div>
+        <div class="subj-tags"><span class="subj-tag">竞赛</span><span class="subj-tag">保送</span><span class="subj-tag">强基</span></div>
+      </a>
+      <a href="teachers.html?subject=编程" class="subject-item">
+        <div class="subj-icon">💻</div>
+        <div class="subj-title">编程/信息学</div>
+        <div class="subj-desc">Python入门、C++算法、NOIP竞赛辅导</div>
+        <div class="subj-tags"><span class="subj-tag">Python</span><span class="subj-tag">C++</span><span class="subj-tag">NOIP</span></div>
+      </a>
+      <a href="teachers.html?subject=艺术" class="subject-item">
+        <div class="subj-icon">🎨</div>
+        <div class="subj-title">美术/书法</div>
+        <div class="subj-desc">素描色彩、国画书法、艺考专业课辅导</div>
+        <div class="subj-tags"><span class="subj-tag">素描</span><span class="subj-tag">艺考</span><span class="subj-tag">书法</span></div>
+      </a>
+      <a href="teachers.html?subject=音乐" class="subject-item">
+        <div class="subj-icon">🎵</div>
+        <div class="subj-title">音乐/乐器</div>
+        <div class="subj-desc">钢琴、声乐、乐理、艺考音乐辅导</div>
+        <div class="subj-tags"><span class="subj-tag">钢琴</span><span class="subj-tag">声乐</span><span class="subj-tag">艺考</span></div>
+      </a>
+      <a href="teachers.html?subject=体育" class="subject-item">
+        <div class="subj-icon">⚽</div>
+        <div class="subj-title">体育中考</div>
+        <div class="subj-desc">中考体育各项目训练、体考提分方案</div>
+        <div class="subj-tags"><span class="subj-tag">中考体育</span><span class="subj-tag">体考</span></div>
+      </a>
+      <a href="teachers.html?subject=留学" class="subject-item">
+        <div class="subj-icon">✈️</div>
+        <div class="subj-title">留学/雅思托福</div>
+        <div class="subj-desc">雅思托福、SAT/ACT、留学规划、文书指导</div>
+        <div class="subj-tags"><span class="subj-tag">雅思</span><span class="subj-tag">托福</span><span class="subj-tag">SAT</span></div>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<!-- CTA -->
+<div class="cta-bar">
+  <h2>没找到想要的科目？</h2>
+  <p>加微信告诉我们您的需求，48小时内为您精准匹配</p>
+  <a href="index.html#consult" class="btn-white">免费咨询</a>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-logo">📖 学科辅导网</div>
+      <p style="color:#9CA3AF;font-size:13px;margin-top:8px;">全国精品一对一家教匹配平台</p>
+    </div>
+    <div class="footer-col">
+      <h4>快速导航</h4>
+      <a href="subjects.html">学科大全</a>
+      <a href="teachers.html">找老师</a>
+      <a href="about.html">关于我们</a>
+    </div>
+    <div class="footer-col">
+      <h4>热门科目</h4>
+      <a href="teachers.html?subject=数学">数学辅导</a>
+      <a href="teachers.html?subject=英语">英语辅导</a>
+      <a href="teachers.html?subject=物理">物理辅导</a>
+    </div>
+    <div class="footer-col">
+      <h4>联系我们</h4>
+      <p>微信：fanlaoshiwx</p>
+      <p>域名：xuekefudao.cn</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024-2026 学科辅导网 版权所有 &nbsp;|&nbsp; xuekefudao.cn</p>
+  </div>
+</footer>
+
+</body>
+</html>

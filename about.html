@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关于学科辅导网 - 全国精品家教匹配平台</title>
+  <meta name="description" content="学科辅导网专注家教匹配，严选全国优质老师，免费为家长匹配最合适的一对一辅导老师。">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .about-hero {
+      background: linear-gradient(135deg, #1E1B4B, #4F46E5);
+      padding: 110px 0 60px; text-align: center; color: #fff;
+    }
+    .about-hero h1 { font-size: 36px; font-weight: 800; margin-bottom: 10px; }
+    .about-hero p { font-size: 16px; opacity: 0.8; }
+    .about-story { background: #fff; padding: 80px 0; }
+    .about-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .about-text h2 { font-size: 28px; font-weight: 800; margin-bottom: 16px; }
+    .about-text p { color: var(--text-mid); line-height: 1.8; margin-bottom: 14px; }
+    .about-visual {
+      background: linear-gradient(135deg, var(--primary-light), #E0E7FF);
+      border-radius: 16px; padding: 40px; text-align: center;
+    }
+    .big-stat { font-size: 60px; font-weight: 900; color: var(--primary); }
+    .big-stat-label { font-size: 16px; color: var(--text-mid); }
+    .milestones { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
+    .milestone { display: flex; align-items: center; gap: 12px; font-size: 15px; }
+    .milestone-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--primary); flex-shrink: 0; }
+    .team-section { background: var(--bg); padding: 80px 0; }
+    .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .team-card { background: #fff; border-radius: var(--radius); padding: 28px; text-align: center; border: 1px solid var(--border); }
+    .team-avatar { width: 70px; height: 70px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), #818CF8); display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 700; color: #fff; margin: 0 auto 14px; }
+    .team-name { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+    .team-role { font-size: 13px; color: var(--primary); font-weight: 600; margin-bottom: 8px; }
+    .team-bio { font-size: 13px; color: var(--text-mid); line-height: 1.7; }
+    .contact-info { background: linear-gradient(135deg, #1E1B4B, #4F46E5); padding: 80px 0; text-align: center; color: #fff; }
+    .contact-info h2 { font-size: 28px; font-weight: 800; margin-bottom: 14px; }
+    .contact-info p { opacity: 0.8; margin-bottom: 28px; }
+    .wechat-big { font-size: 28px; font-weight: 900; color: #4ADE80; background: rgba(255,255,255,0.1); padding: 14px 36px; border-radius: 12px; display: inline-block; letter-spacing: 3px; }
+    @media (max-width: 768px) {
+      .about-wrap { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar" id="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">📖 <span>学科辅导网</span></a>
+    <div class="nav-links">
+      <a href="index.html">首页</a>
+      <a href="teachers.html">找老师</a>
+      <a href="subjects.html">学科大全</a>
+      <a href="about.html" class="active">关于我们</a>
+      <a href="index.html#contact" class="nav-cta">免费咨询</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="about-hero">
+  <div class="container">
+    <h1>关于学科辅导网</h1>
+    <p>专注家教匹配，让每个孩子都能找到最适合的老师</p>
+  </div>
+</div>
+
+<section class="about-story">
+  <div class="container">
+    <div class="about-wrap">
+      <div class="about-text">
+        <h2>我们在做什么？</h2>
+        <p>学科辅导网是一个专注一对一家教匹配的平台。我们深知，找到一位真正适合孩子的老师，并不容易——老师风格、教学方式、性格匹配度都会影响学习效果。</p>
+        <p>我们做的事情很简单：<strong>深度了解家长和孩子的需求，从我们严选的师资库中，为每个孩子精准推荐2-3位候选老师</strong>，家长试课后再做决定，不满意无条件更换。</p>
+        <p>目前我们覆盖全国50+城市，拥有2000+经过审核的优质家教老师，服务超过10,000个家庭，家长满意率超过98%。</p>
+        <div class="milestones">
+          <div class="milestone"><div class="milestone-dot"></div><span><strong>2019年</strong> 成立，最初服务南通本地家庭</span></div>
+          <div class="milestone"><div class="milestone-dot"></div><span><strong>2021年</strong> 扩展至全国，师资库突破1000人</span></div>
+          <div class="milestone"><div class="milestone-dot"></div><span><strong>2023年</strong> 累计服务家庭突破5000，好评如潮</span></div>
+          <div class="milestone"><div class="milestone-dot"></div><span><strong>2025年</strong> 推出"xuekefudao.cn"全国引流平台</span></div>
+        </div>
+      </div>
+      <div class="about-visual">
+        <div class="big-stat">10,000+</div>
+        <div class="big-stat-label">服务家庭总数</div>
+        <div style="margin-top:24px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;justify-content:space-between;font-size:14px;padding:10px 0;border-bottom:1px solid #E0E7FF;">
+            <span>👩‍🏫 入驻老师</span><strong style="color:var(--primary);">2000+</strong>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:14px;padding:10px 0;border-bottom:1px solid #E0E7FF;">
+            <span>🏙️ 覆盖城市</span><strong style="color:var(--primary);">50+</strong>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:14px;padding:10px 0;border-bottom:1px solid #E0E7FF;">
+            <span>⭐ 家长满意率</span><strong style="color:var(--primary);">98%</strong>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:14px;padding:10px 0;">
+            <span>⚡ 匹配速度</span><strong style="color:var(--primary);">48小时内</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="team-section">
+  <div class="container">
+    <div class="section-title">
+      <h2>我们的团队</h2>
+      <p>教育行业从业者，真正懂孩子和家长的需求</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">范</div>
+        <div class="team-name">范老师</div>
+        <div class="team-role">创始人 & 首席匹配顾问</div>
+        <div class="team-bio">教育行业从业10年，熟悉各年级学习痛点，擅长家教老师筛选和家庭需求分析，亲自参与每一次重要匹配。</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">师</div>
+        <div class="team-name">师资团队</div>
+        <div class="team-role">老师审核 & 质量把控</div>
+        <div class="team-bio">负责所有入驻老师的资质审核，包括学历验证、试讲评估、家长反馈追踪，确保每位老师都达到平台标准。</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">客</div>
+        <div class="team-name">客服顾问</div>
+        <div class="team-role">家长对接 & 服务跟进</div>
+        <div class="team-bio">专属顾问一对一服务，从需求了解、老师推荐、试课安排，到后续跟进反馈，全程陪伴服务。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-info">
+  <div class="container">
+    <h2>🤝 与我们联系</h2>
+    <p>无论您有任何问题，欢迎随时加微信咨询，顾问在线解答</p>
+    <div class="wechat-big">fanlaoshiwx</div>
+    <p style="margin-top:20px;opacity:0.7;font-size:13px;">加微信请备注「学科+年级+城市」，方便顾问更快响应您的需求</p>
+    <a href="index.html#contact" style="display:inline-block;margin-top:24px;background:var(--accent);color:#1E1B4B;padding:14px 36px;border-radius:28px;font-size:16px;font-weight:700;">在线填写匹配表单 →</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">📖 学科辅导网</div>
+        <p>全国精品家教匹配平台</p>
+        <div class="footer-wechat">微信咨询：<strong>fanlaoshiwx</strong></div>
+      </div>
+      <div class="footer-links">
+        <h4>快速导航</h4>
+        <a href="index.html">首页</a><a href="teachers.html">找老师</a>
+        <a href="subjects.html">学科大全</a><a href="about.html">关于我们</a>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>© 2024-2026 学科辅导网 版权所有</p></div>
+  </div>
+</footer>
+
+<div id="float-btn" onclick="location.href='index.html#contact'">
+  <span class="float-icon">💬</span>
+  <span class="float-text">免费匹配</span>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+      const show = navLinks.style.display !== 'flex';
+      Object.assign(navLinks.style, show ? {
+        display:'flex',flexDirection:'column',position:'absolute',top:'60px',left:'0',right:'0',
+        background:'#fff',padding:'16px 20px',borderBottom:'1px solid #E2E8F0',gap:'14px',zIndex:'999'
+      } : { display:'none' });
+    });
+  }
+});
+</script>
+</body>
+</html>
