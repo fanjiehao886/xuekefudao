@@ -60,7 +60,21 @@ async function handleGet(req, res) {
 // ========== 接收表单 ==========
 async function handlePost(req, res) {
   try {
-    const { grade, subject, city, contact, note, _native } = req.body || {};
+    // 兼容新旧 Vercel 运行时：新版可能没有 req.body，需手动解析
+    let body = req.body;
+    if (!body || Object.keys(body).length === 0) {
+      const ct = req.headers['content-type'] || '';
+      if (typeof req.text === 'function') {
+        const raw = await req.text();
+        if (ct.includes('application/json')) {
+          try { body = JSON.parse(raw); } catch (e) { body = {}; }
+        } else {
+          body = Object.fromEntries(new URLSearchParams(raw));
+        }
+      }
+    }
+
+    const { grade, subject, city, contact, note, _native } = body || {};
     const isNative = _native === '1';
     const timestamp = new Date().toISOString();
     const id = Date.now() + '-' + Math.random().toString(36).slice(2, 8);
@@ -85,7 +99,9 @@ async function handlePost(req, res) {
     }
     return res.status(200).json({ success: true, message: '提交成功！我们会尽快联系您。' });
   } catch (err) {
-    if (req.body && req.body._native === '1') {
+    console.error('handlePost error:', err);
+    const body = req.body || {};
+    if (body._native === '1') {
       res.setHeader('Location', '/?thanks=1');
       return res.status(302).end();
     }

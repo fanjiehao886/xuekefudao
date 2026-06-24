@@ -1,0 +1,15 @@
+{
+  "name": "xuekefudao",
+  "version": "1.0.0",
+  "description": "## 项目简介 全国家长引流静态网站，部署在 Vercel，使用 xuekefudao.cn 域名。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/blob": "^2.4.0"
+  }
+}
