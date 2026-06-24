@@ -1,7 +1,10 @@
 // Vercel Serverless Function — 接收家教咨询 + 管理后台
 
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', 'https://xuekefudao.cn');
+  var origin = req.headers.origin || '';
+  if (origin.includes('xuekefudao.cn') || origin.includes('app.codebuddy.work') || origin.includes('localhost')) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
