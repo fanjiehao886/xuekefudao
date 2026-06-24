@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 页面未找到 - 学科辅导网</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: linear-gradient(135deg, #1E1B4B, #4F46E5);
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      min-height: 100vh; text-align: center; padding: 20px;
+    }
+    .code { font-size: 120px; font-weight: 900; opacity: 0.2; line-height: 1; }
+    h1 { font-size: 32px; font-weight: 800; margin: -20px 0 12px; }
+    p { font-size: 16px; opacity: 0.8; margin-bottom: 32px; line-height: 1.7; }
+    .actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    a {
+      display: inline-block; padding: 12px 30px; border-radius: 28px;
+      font-size: 15px; font-weight: 600; text-decoration: none; transition: all 0.2s;
+    }
+    .btn-home { background: #F59E0B; color: #1E1B4B; }
+    .btn-home:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245,158,11,0.4); }
+    .btn-wechat { background: rgba(255,255,255,0.15); color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+    .btn-wechat:hover { background: rgba(255,255,255,0.25); }
+  </style>
+</head>
+<body>
+<div>
+  <div class="code">404</div>
+  <h1>页面未找到</h1>
+  <p>您访问的页面不存在或已移动<br>如需帮助，可加微信直接咨询</p>
+  <div class="actions">
+    <a href="/" class="btn-home">回到首页</a>
+    <a href="javascript:navigator.clipboard.writeText('fanlaoshiwx');alert('已复制微信号：fanlaoshiwx')" class="btn-wechat">复制微信号</a>
+  </div>
+</div>
+</body>
+</html>

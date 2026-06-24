@@ -3,9 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="dns-prefetch" href="//www.xuekefudao.cn">
   <title>找家教老师 - 按科目/年级/城市筛选 | 学科辅导网</title>
   <meta name="keywords" content="找家教老师,一对一辅导老师,数学家教,英语家教,物理家教,家教老师推荐">
   <meta name="description" content="学科辅导网老师库，2000+精选家教老师，按科目、年级、城市筛选，加微信免费咨询匹配。">
+  <link rel="canonical" href="https://www.xuekefudao.cn/teachers.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="找家教老师 - 学科辅导网">
+  <meta property="og:description" content="2000+精选家教老师，按科目、年级、城市筛选，加微信免费咨询匹配。">
+  <meta property="og:url" content="https://www.xuekefudao.cn/teachers.html">
+  <meta property="og:type" content="website">
   <link rel="stylesheet" href="css/style.css">
   <style>
     .filter-bar {
@@ -105,6 +114,7 @@
         <option>985/211</option><option>博士/硕士</option><option>师范院校</option>
       </select>
       <input type="text" id="f_city" placeholder="输入城市，如：北京">
+      <input type="text" id="f_search" class="search-input" placeholder="🔍 按名字/标签搜索">
       <button class="btn-filter" onclick="filterTeachers()">筛选</button>
       <button class="btn-reset" onclick="resetFilter()">重置</button>
     </div>
@@ -118,7 +128,7 @@
     <div class="consult-cta">
       <h3>👨‍🏫 没找到合适的老师？</h3>
       <p>告诉我们您的需求，我们从后台为您精准匹配，48小时内回复</p>
-      <div class="wechat-highlight">fanlaoshiwx</div>
+      <div class="wechat-highlight"><span class="wechat-copy-wrap">fanlaoshiwx<button type="button" class="wechat-copy-btn" data-wechat="fanlaoshiwx">复制</button></span></div>
       <p style="opacity:0.7;font-size:13px;">加微信备注「学科+年级+城市」，顾问免费为您匹配</p>
       <a href="index.html#contact" style="display:inline-block;margin-top:16px;background:#fff;color:var(--primary);padding:12px 30px;border-radius:24px;font-weight:700;font-size:15px;">填写匹配表单 →</a>
     </div>
@@ -131,7 +141,7 @@
       <div class="footer-brand">
         <div class="footer-logo">📖 学科辅导网</div>
         <p>全国精品家教匹配平台</p>
-        <div class="footer-wechat">微信咨询：<strong>fanlaoshiwx</strong></div>
+        <div class="footer-wechat">微信咨询：<span class="wechat-copy-wrap"><strong>fanlaoshiwx</strong><button type="button" class="wechat-copy-btn" data-wechat="fanlaoshiwx">复制</button></span></div>
       </div>
       <div class="footer-links">
         <h4>快速导航</h4>
@@ -155,21 +165,9 @@
   <span class="float-text">免费匹配</span>
 </div>
 
+<script src="js/teachers-data.js"></script>
+<script src="js/main.js"></script>
 <script>
-const allTeachers = [
-  { name:"王晓明", gender:"男", edu:"985硕士", area:"北京", subjects:"数学·物理", grades:"高中·高考", years:8, tags:["竞赛专项","高考冲刺","耐心细致"], price:"200-280元/时", emoji:"王" },
-  { name:"李思雨", gender:"女", edu:"211本科", area:"上海", subjects:"英语·语文", grades:"初中·高中", years:5, tags:["口语流利","写作提升","亲和力强"], price:"180-250元/时", emoji:"李" },
-  { name:"陈建国", gender:"男", edu:"名校博士", area:"广州", subjects:"化学·生物", grades:"高中·竞赛", years:10, tags:["竞赛教练","实验讲解","逻辑清晰"], price:"260-350元/时", emoji:"陈" },
-  { name:"张美丽", gender:"女", edu:"师范本科", area:"成都", subjects:"语文·数学", grades:"小学", years:6, tags:["启蒙专家","趣味教学","家长好评"], price:"120-180元/时", emoji:"张" },
-  { name:"刘志强", gender:"男", edu:"985本科", area:"南京", subjects:"数学·信息", grades:"初中·高中", years:7, tags:["奥数金牌","编程竞赛","逻辑思维"], price:"220-300元/时", emoji:"刘" },
-  { name:"赵雅婷", gender:"女", edu:"211硕士", area:"杭州", subjects:"英语·历史", grades:"初中·高中", years:4, tags:["托福满分","双语教学","外向活泼"], price:"200-280元/时", emoji:"赵" },
-  { name:"孙浩然", gender:"男", edu:"重点本科", area:"武汉", subjects:"物理·化学", grades:"高中·中考", years:9, tags:["理综专家","题型总结","提分快"], price:"180-240元/时", emoji:"孙" },
-  { name:"周晨曦", gender:"女", edu:"师范硕士", area:"西安", subjects:"语文·政治", grades:"高中·中考", years:6, tags:["答题技巧","作文满分","文科全能"], price:"160-220元/时", emoji:"周" },
-  { name:"吴佳慧", gender:"女", edu:"985本科", area:"北京", subjects:"数学·英语", grades:"小学·初中", years:3, tags:["英美外教背景","趣味教学","提分显著"], price:"220-300元/时", emoji:"吴" },
-  { name:"郑文博", gender:"男", edu:"211博士", area:"上海", subjects:"物理·数学", grades:"高中·竞赛", years:11, tags:["物理竞赛银牌","高考满分","严格要求"], price:"280-400元/时", emoji:"郑" },
-  { name:"冯雪莹", gender:"女", edu:"师范本科", area:"深圳", subjects:"英语·语文", grades:"小学·初中", years:5, tags:["口语纯正","阅读提升","轻松愉快"], price:"180-250元/时", emoji:"冯" },
-  { name:"何俊杰", gender:"男", edu:"985本科", area:"重庆", subjects:"数学·物理", grades:"初中·高中", years:6, tags:["中考状元","思路清晰","善于总结"], price:"160-220元/时", emoji:"何" },
-];
 
 function renderTeacherCards(list) {
   const grid = document.getElementById('teachers-list-grid');
@@ -197,6 +195,7 @@ function filterTeachers() {
   const grade = document.getElementById('f_grade').value;
   const edu = document.getElementById('f_edu').value;
   const city = document.getElementById('f_city').value.trim();
+  const search = document.getElementById('f_search').value.trim().toLowerCase();
   let result = allTeachers.filter(t => {
     if (subject && !t.subjects.includes(subject)) return false;
     if (grade && !t.grades.includes(grade)) return false;
@@ -206,6 +205,10 @@ function filterTeachers() {
       if (edu === '师范院校' && !t.edu.match(/师范/)) return false;
     }
     if (city && !t.area.includes(city)) return false;
+    if (search) {
+      const haystack = (t.name + ' ' + t.subjects + ' ' + t.tags.join(' ') + ' ' + t.grades + ' ' + t.area + ' ' + t.edu).toLowerCase();
+      if (!haystack.includes(search)) return false;
+    }
     return true;
   });
   renderTeacherCards(result);
@@ -226,20 +229,8 @@ window.addEventListener('DOMContentLoaded', () => {
   if (params.get('grade')) document.getElementById('f_grade').value = params.get('grade');
   filterTeachers();
 
-  // 导航
-  const hamburger = document.getElementById('hamburger');
-  const navLinks = document.querySelector('.nav-links');
-  if (hamburger && navLinks) {
-    hamburger.addEventListener('click', () => {
-      const show = navLinks.style.display !== 'flex';
-      Object.assign(navLinks.style, show ? {
-        display: 'flex', flexDirection: 'column',
-        position: 'absolute', top: '60px', left: '0', right: '0',
-        background: '#fff', padding: '16px 20px',
-        borderBottom: '1px solid #E2E8F0', gap: '14px', zIndex: '999'
-      } : { display: 'none' });
-    });
-  }
+  // 微信复制按钮初始化
+  initWechatCopy();
 });
 </script>
 </body>

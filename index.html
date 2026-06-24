@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="dns-prefetch" href="//www.xuekefudao.cn">
   <title>学科辅导网 - 全国精品家教，一对一匹配好老师</title>
   <meta name="keywords" content="学科辅导,家教,一对一辅导,找家教,在线家教,语文辅导,数学辅导,英语辅导,物理辅导,化学辅导,小学辅导,初中辅导,高中辅导,中考辅导,高考辅导">
   <meta name="description" content="学科辅导网——全国精品一对一家教匹配平台。专业老师，按科目/年级/地区精准筛选，加微信免费咨询，快速匹配适合您孩子的好老师。">
@@ -303,7 +305,7 @@
           <div class="wechat-icon">💬</div>
           <div>
             <strong>也可直接加微信</strong>
-            <span class="wechat-id">fanlaoshiwx</span>
+            <span class="wechat-copy-wrap"><span class="wechat-id">fanlaoshiwx</span><button type="button" class="wechat-copy-btn" data-wechat="fanlaoshiwx">复制</button></span>
           </div>
         </div>
         <ul class="contact-promise">
@@ -314,7 +316,8 @@
         </ul>
       </div>
       <div class="contact-right">
-        <form class="contact-form" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <form class="contact-form" id="contactForm" action="/api/contact" method="POST">
+          <input type="hidden" name="_next" value="/?thanks=1">
           <div class="form-group">
             <label>孩子年级 *</label>
             <select name="grade" required>
@@ -354,6 +357,10 @@
             <label>补充说明</label>
             <textarea name="note" rows="3" placeholder="孩子目前成绩、薄弱点、期望提升目标等（可选）"></textarea>
           </div>
+          <div class="form-privacy">
+            <input type="checkbox" name="privacy" id="privacyCheck" required>
+            <label for="privacyCheck">我已阅读并同意<a href="about.html" class="privacy-link">《隐私政策》</a>，授权平台使用以上信息进行家教匹配服务</label>
+          </div>
           <button type="submit" class="btn-submit" id="submitBtn">免费提交，获取匹配方案</button>
           <p class="form-tip">* 提交后专属顾问将在48小时内联系您，信息仅用于匹配服务</p>
         </form>
@@ -361,7 +368,7 @@
           <div class="success-icon">🎉</div>
           <h3>提交成功！</h3>
           <p>顾问将在48小时内联系您</p>
-          <p>也可直接加微信：<strong>fanlaoshiwx</strong></p>
+          <p>也可直接加微信：<span class="wechat-copy-wrap"><strong>fanlaoshiwx</strong><button type="button" class="wechat-copy-btn" data-wechat="fanlaoshiwx">复制</button></span></p>
         </div>
       </div>
     </div>
@@ -375,7 +382,7 @@
       <div class="footer-brand">
         <div class="footer-logo">📖 学科辅导网</div>
         <p>全国精品家教匹配平台<br>专注一对一辅导，让每个孩子找到好老师</p>
-        <div class="footer-wechat">微信咨询：<strong>fanlaoshiwx</strong></div>
+        <div class="footer-wechat">微信咨询：<span class="wechat-copy-wrap"><strong>fanlaoshiwx</strong><button type="button" class="wechat-copy-btn" data-wechat="fanlaoshiwx">复制</button></span></div>
       </div>
       <div class="footer-links">
         <h4>快速导航</h4>
@@ -414,6 +421,7 @@
   <span class="float-text">免费匹配</span>
 </div>
 
+<script src="js/teachers-data.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

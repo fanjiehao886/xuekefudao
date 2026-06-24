@@ -3,9 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="dns-prefetch" href="//www.xuekefudao.cn">
   <title>学科大全 - 学科辅导网</title>
   <meta name="keywords" content="学科辅导,语文辅导,数学辅导,英语辅导,物理辅导,化学辅导,小学辅导,初中辅导,高中辅导,竞赛辅导">
   <meta name="description" content="学科辅导网涵盖小学、初中、高中全科目辅导，语文/数学/英语/物理/化学/生物/历史/地理/政治/奥数/编程/艺术，精准匹配好老师。">
+  <link rel="canonical" href="https://www.xuekefudao.cn/subjects.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="学科大全 - 全科目家教辅导 | 学科辅导网">
+  <meta property="og:description" content="小学·初中·高中·竞赛全科目家教辅导，精准匹配好老师。">
+  <meta property="og:url" content="https://www.xuekefudao.cn/subjects.html">
+  <meta property="og:type" content="website">
   <link rel="stylesheet" href="css/style.css">
   <style>
     .subjects-hero {
@@ -75,15 +84,19 @@
 <body>
 
 <!-- 导航栏 -->
-<nav class="navbar">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-brand">📖 <span>学科辅导网</span></a>
+<nav class="navbar" id="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">📖 <span>学科辅导网</span></a>
     <div class="nav-links">
-      <a href="subjects.html">学科大全</a>
+      <a href="index.html">首页</a>
+      <a href="subjects.html" class="active">学科大全</a>
       <a href="teachers.html">找老师</a>
       <a href="about.html">关于我们</a>
-      <a href="index.html#consult" class="nav-cta">免费咨询</a>
+      <a href="index.html#contact" class="nav-cta">免费咨询</a>
     </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="菜单">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
@@ -279,38 +292,48 @@
 <div class="cta-bar">
   <h2>没找到想要的科目？</h2>
   <p>加微信告诉我们您的需求，48小时内为您精准匹配</p>
-  <a href="index.html#consult" class="btn-white">免费咨询</a>
+  <a href="index.html#contact" class="btn-white">免费咨询</a>
 </div>
 
 <!-- Footer -->
 <footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-col">
-      <div class="footer-logo">📖 学科辅导网</div>
-      <p style="color:#9CA3AF;font-size:13px;margin-top:8px;">全国精品一对一家教匹配平台</p>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">📖 学科辅导网</div>
+        <p>全国精品家教匹配平台<br>专注一对一辅导，让每个孩子找到好老师</p>
+        <div class="footer-wechat">微信咨询：<span class="wechat-copy-wrap"><strong>fanlaoshiwx</strong><button type="button" class="wechat-copy-btn" data-wechat="fanlaoshiwx">复制</button></span></div>
+      </div>
+      <div class="footer-links">
+        <h4>快速导航</h4>
+        <a href="index.html">首页</a>
+        <a href="teachers.html">找老师</a>
+        <a href="subjects.html">学科大全</a>
+        <a href="about.html">关于我们</a>
+      </div>
+      <div class="footer-links">
+        <h4>热门科目</h4>
+        <a href="teachers.html?subject=数学">数学辅导</a>
+        <a href="teachers.html?subject=英语">英语辅导</a>
+        <a href="teachers.html?subject=物理">物理辅导</a>
+        <a href="teachers.html?subject=化学">化学辅导</a>
+        <a href="teachers.html?subject=奥数">奥数竞赛</a>
+      </div>
+      <div class="footer-links">
+        <h4>适用年级</h4>
+        <a href="teachers.html?grade=小学">小学辅导</a>
+        <a href="teachers.html?grade=初中">初中辅导</a>
+        <a href="teachers.html?grade=高中">高中辅导</a>
+        <a href="teachers.html?grade=高考">高考冲刺</a>
+        <a href="teachers.html?grade=中考">中考冲刺</a>
+      </div>
     </div>
-    <div class="footer-col">
-      <h4>快速导航</h4>
-      <a href="subjects.html">学科大全</a>
-      <a href="teachers.html">找老师</a>
-      <a href="about.html">关于我们</a>
+    <div class="footer-bottom">
+      <p>© 2024-2026 学科辅导网 版权所有 &nbsp;|&nbsp; xuekefudao.cn</p>
     </div>
-    <div class="footer-col">
-      <h4>热门科目</h4>
-      <a href="teachers.html?subject=数学">数学辅导</a>
-      <a href="teachers.html?subject=英语">英语辅导</a>
-      <a href="teachers.html?subject=物理">物理辅导</a>
-    </div>
-    <div class="footer-col">
-      <h4>联系我们</h4>
-      <p>微信：fanlaoshiwx</p>
-      <p>域名：xuekefudao.cn</p>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2024-2026 学科辅导网 版权所有 &nbsp;|&nbsp; xuekefudao.cn</p>
   </div>
 </footer>
 
+<script src="js/main.js"></script>
 </body>
 </html>

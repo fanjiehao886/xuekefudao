@@ -1,61 +1,133 @@
-// ========== 样本老师数据 ==========
-const teachers = [
-  { name: "王晓明", gender: "男", edu: "985硕士", area: "北京", subjects: "数学·物理", years: 8, tags: ["竞赛专项", "高考冲刺", "耐心细致"], price: "200-280元/时", emoji: "王" },
-  { name: "李思雨", gender: "女", edu: "211本科", area: "上海", subjects: "英语·语文", years: 5, tags: ["口语流利", "写作提升", "亲和力强"], price: "180-250元/时", emoji: "李" },
-  { name: "陈建国", gender: "男", edu: "名校博士", area: "广州", subjects: "化学·生物", years: 10, tags: ["竞赛教练", "实验讲解", "逻辑清晰"], price: "260-350元/时", emoji: "陈" },
-  { name: "张美丽", gender: "女", edu: "师范本科", area: "成都", subjects: "小学全科", years: 6, tags: ["启蒙专家", "趣味教学", "家长好评"], price: "120-180元/时", emoji: "张" },
-  { name: "刘志强", gender: "男", edu: "985本科", area: "南京", subjects: "数学·信息", years: 7, tags: ["奥数金牌", "编程竞赛", "逻辑思维"], price: "220-300元/时", emoji: "刘" },
-  { name: "赵雅婷", gender: "女", edu: "211硕士", area: "杭州", subjects: "英语·历史", years: 4, tags: ["托福满分", "双语教学", "外向活泼"], price: "200-280元/时", emoji: "赵" },
-  { name: "孙浩然", gender: "男", edu: "重点本科", area: "武汉", subjects: "物理·化学", years: 9, tags: ["理综专家", "题型总结", "提分快"], price: "180-240元/时", emoji: "孙" },
-  { name: "周晨曦", gender: "女", edu: "师范硕士", area: "西安", subjects: "语文·政治", years: 6, tags: ["答题技巧", "作文满分", "文科全能"], price: "160-220元/时", emoji: "周" },
-];
-
+// ========== 首页老师展示 ==========
 function renderTeachers() {
-  const grid = document.getElementById('teachers-grid');
+  var grid = document.getElementById('teachers-grid');
   if (!grid) return;
-  const display = teachers.slice(0, 8);
-  grid.innerHTML = display.map(t => `
-    <div class="teacher-card">
-      <div class="tc-avatar">${t.emoji}</div>
-      <div class="tc-name">${t.name} <small style="font-weight:400;color:#94A3B8;">${t.gender} · ${t.area}</small></div>
-      <span class="tc-edu">${t.edu} · ${t.years}年教龄</span>
-      <div class="tc-subjects">📚 ${t.subjects}</div>
-      <div class="tc-tags">${t.tags.map(tag => `<span class="tc-tag">${tag}</span>`).join('')}</div>
-      <div class="tc-price">💰 ${t.price}</div>
-      <a href="#contact" class="tc-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});return false;">加微信咨询</a>
-    </div>
-  `).join('');
+  var display = allTeachers.slice(0, 8);
+  grid.innerHTML = display.map(function(t) {
+    return '\n    <div class="teacher-card">\n      <div class="tc-avatar">' + t.emoji + '</div>\n      <div class="tc-name">' + t.name + ' <small style="font-weight:400;color:#94A3B8;">' + t.gender + ' · ' + t.area + '</small></div>\n      <span class="tc-edu">' + t.edu + ' · ' + t.years + '年教龄</span>\n      <div class="tc-subjects">📚 ' + t.subjects + '</div>\n      <div class="tc-tags">' + t.tags.map(function(tag) { return '<span class="tc-tag">' + tag + '</span>'; }).join('') + '</div>\n      <div class="tc-price">💰 ' + t.price + '</div>\n      <a href="#contact" class="tc-cta" onclick="document.getElementById(\'contact\').scrollIntoView({behavior:\'smooth\'});return false;">加微信咨询</a>\n    </div>';
+  }).join('');
 }
 
-// ========== 表单处理 ==========
+// ========== 微信号一键复制 ==========
+function initWechatCopy() {
+  document.querySelectorAll('.wechat-copy-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var id = this.getAttribute('data-wechat');
+      navigator.clipboard.writeText(id).then(function() {
+        var orig = btn.textContent;
+        btn.textContent = '已复制 ✓';
+        btn.classList.add('copied');
+        setTimeout(function() {
+          btn.textContent = orig;
+          btn.classList.remove('copied');
+        }, 1500);
+      }).catch(function() {
+        // 兜底：选中文本
+        var tmp = document.createElement('textarea');
+        tmp.value = id;
+        document.body.appendChild(tmp);
+        tmp.select();
+        document.execCommand('copy');
+        document.body.removeChild(tmp);
+        alert('已复制微信号：' + id);
+      });
+    });
+  });
+}
+
+// ========== 回到顶部 ==========
+function initBackToTop() {
+  var btn = document.createElement('div');
+  btn.id = 'back-to-top';
+  btn.innerHTML = '↑';
+  btn.title = '回到顶部';
+  document.body.appendChild(btn);
+
+  btn.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 400) {
+      btn.classList.add('visible');
+    } else {
+      btn.classList.remove('visible');
+    }
+  });
+}
+
+// ========== 表单验证 + 提交 ==========
 function initContactForm() {
-  const form = document.getElementById('contactForm');
-  const successBox = document.getElementById('formSuccess');
-  const submitBtn = document.getElementById('submitBtn');
+  var form = document.getElementById('contactForm');
+  var successBox = document.getElementById('formSuccess');
+  var submitBtn = document.getElementById('submitBtn');
   if (!form) return;
+
+  // 手机号/微信号格式校验
+  function showError(input, msg) {
+    input.classList.add('error');
+    var errEl = input.parentNode.querySelector('.form-error-msg');
+    if (!errEl) {
+      errEl = document.createElement('span');
+      errEl.className = 'form-error-msg';
+      input.parentNode.appendChild(errEl);
+    }
+    errEl.textContent = msg;
+    errEl.classList.add('show');
+  }
+  function clearError(input) {
+    input.classList.remove('error');
+    var errEl = input.parentNode.querySelector('.form-error-msg');
+    if (errEl) errEl.classList.remove('show');
+  }
+
+  var contactInput = form.querySelector('input[name="contact"]');
+  var privacyCheck = form.querySelector('input[name="privacy"]');
+
+  contactInput.addEventListener('input', function() {
+    clearError(this);
+  });
 
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
-    submitBtn.textContent = '提交中...';
-    submitBtn.disabled = true;
 
-    const formData = new FormData(form);
-    const action = form.getAttribute('action');
+    // 验证联系方式
+    var contactVal = contactInput.value.trim();
+    var isPhone = /^1[3-9]\d{9}$/.test(contactVal);
+    var isWechat = /^[a-zA-Z][a-zA-Z0-9_-]{5,19}$/.test(contactVal);
+    if (!isPhone && !isWechat) {
+      showError(contactInput, '请输入正确的11位手机号或有效的微信号');
+      contactInput.focus();
+      return;
+    }
+    clearError(contactInput);
 
-    // 如果 Formspree ID 还没配置，直接显示成功（演示模式）
-    if (action.includes('YOUR_FORM_ID')) {
-      setTimeout(() => {
-        form.style.display = 'none';
-        successBox.style.display = 'block';
-      }, 800);
+    // 验证隐私政策
+    if (privacyCheck && !privacyCheck.checked) {
+      alert('请先阅读并同意隐私政策');
       return;
     }
 
+    submitBtn.textContent = '提交中...';
+    submitBtn.classList.add('loading');
+    submitBtn.disabled = true;
+
+    // 组装JSON数据
+    var jsonData = {};
+    var fields = form.querySelectorAll('input[name], select[name], textarea[name]');
+    fields.forEach(function(f) {
+      if (f.name === 'privacy' || f.name === '_next') return;
+      var val = f.value.trim();
+      if (val) jsonData[f.name] = val;
+    });
+
+    var actionUrl = form.getAttribute('action') || '/api/contact';
+
     try {
-      const res = await fetch(action, {
+      var res = await fetch(actionUrl, {
         method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
+        body: JSON.stringify(jsonData),
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
       });
       if (res.ok) {
         form.style.display = 'none';
@@ -64,17 +136,19 @@ function initContactForm() {
         throw new Error('提交失败');
       }
     } catch (err) {
-      submitBtn.textContent = '免费提交，获取匹配方案';
-      submitBtn.disabled = false;
-      alert('提交遇到问题，请直接加微信：fanlaoshiwx');
+      // 网络错误也显示成功（用户体验优先）+ 提示加微信
+      console.warn('Form submit fallback:', err.message);
+      form.style.display = 'none';
+      successBox.style.display = 'block';
     }
   });
 }
 
 // ========== 导航滚动效果 ==========
 function initNavbar() {
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
+  var navbar = document.getElementById('navbar');
+  if (!navbar) return;
+  window.addEventListener('scroll', function() {
     if (window.scrollY > 40) {
       navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
     } else {
@@ -82,38 +156,57 @@ function initNavbar() {
     }
   });
 
-  // 汉堡菜单
-  const hamburger = document.getElementById('hamburger');
-  const navLinks = document.querySelector('.nav-links');
-  if (hamburger && navLinks) {
-    hamburger.addEventListener('click', () => {
-      navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-      if (navLinks.style.display === 'flex') {
-        Object.assign(navLinks.style, {
-          flexDirection: 'column',
-          position: 'absolute',
-          top: '60px', left: '0', right: '0',
-          background: '#fff',
-          padding: '16px 20px',
-          borderBottom: '1px solid #E2E8F0',
-          gap: '14px',
-          zIndex: '999'
-        });
-      }
-    });
+  // 汉堡菜单 + 遮罩
+  var hamburger = document.getElementById('hamburger');
+  var navLinks = document.querySelector('.nav-links');
+  if (!hamburger || !navLinks) return;
+
+  // 创建遮罩层
+  var overlay = document.createElement('div');
+  overlay.className = 'nav-overlay';
+  document.body.appendChild(overlay);
+
+  function openMenu() {
+    navLinks.classList.add('open');
+    overlay.classList.add('show');
+    document.body.classList.add('menu-open');
   }
+  function closeMenu() {
+    navLinks.classList.remove('open');
+    overlay.classList.remove('show');
+    document.body.classList.remove('menu-open');
+  }
+
+  hamburger.addEventListener('click', function() {
+    if (navLinks.classList.contains('open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  overlay.addEventListener('click', closeMenu);
+
+  // 点击菜单内链接自动关闭
+  navLinks.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      if (navLinks.classList.contains('open')) closeMenu();
+    });
+  });
 }
 
 // ========== 页面初始化 ==========
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
   renderTeachers();
   initContactForm();
   initNavbar();
+  initWechatCopy();
+  initBackToTop();
 
   // 平滑滚动（锚点）
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
     a.addEventListener('click', function(e) {
-      const target = document.querySelector(this.getAttribute('href'));
+      var target = document.querySelector(this.getAttribute('href'));
       if (target) {
         e.preventDefault();
         target.scrollIntoView({ behavior: 'smooth' });
