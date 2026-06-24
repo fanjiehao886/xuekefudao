@@ -60,7 +60,8 @@ async function handleGet(req, res) {
 // ========== 接收表单 ==========
 async function handlePost(req, res) {
   try {
-    const { grade, subject, city, contact, note } = req.body || {};
+    const { grade, subject, city, contact, note, _native } = req.body || {};
+    const isNative = _native === '1';
     const timestamp = new Date().toISOString();
     const id = Date.now() + '-' + Math.random().toString(36).slice(2, 8);
     const submission = { id, timestamp, grade, subject, city, contact, note };
@@ -78,8 +79,16 @@ async function handlePost(req, res) {
       }
     }
 
+    if (isNative) {
+      res.setHeader('Location', '/?thanks=1');
+      return res.status(302).end();
+    }
     return res.status(200).json({ success: true, message: '提交成功！我们会尽快联系您。' });
   } catch (err) {
+    if (req.body && req.body._native === '1') {
+      res.setHeader('Location', '/?thanks=1');
+      return res.status(302).end();
+    }
     return res.status(500).json({ error: '服务器错误，请稍后重试' });
   }
 }

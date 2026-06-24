@@ -112,34 +112,31 @@ function initContactForm() {
     submitBtn.classList.add('loading');
     submitBtn.disabled = true;
 
-    // 组装JSON数据
-    var jsonData = {};
-    var fields = form.querySelectorAll('input[name], select[name], textarea[name]');
-    fields.forEach(function(f) {
-      if (f.name === 'privacy' || f.name === '_next') return;
-      var val = f.value.trim();
-      if (val) jsonData[f.name] = val;
-    });
+    // 使用FormData（简单请求，不触发CORS预检，兼容微信浏览器）
+    var formData = new FormData(form);
+    formData.delete('_next');
+    formData.delete('privacy');
 
-    var actionUrl = form.getAttribute('action') || '/api/contact';
-
+    var submitted = false;
     try {
-      var res = await fetch(actionUrl, {
-        method: 'POST',
-        body: JSON.stringify(jsonData),
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
-      });
-      if (res.ok) {
-        form.style.display = 'none';
-        successBox.style.display = 'block';
-      } else {
-        throw new Error('提交失败');
-      }
-    } catch (err) {
-      // 网络错误也显示成功（用户体验优先）+ 提示加微信
-      console.warn('Form submit fallback:', err.message);
+      // 不设Content-Type，浏览器自动设multipart/form-data，走简单请求
+      var res = await fetch('/api/contact', { method: 'POST', body: formData });
+      if (res.ok) submitted = true;
+    } catch (e) {
+      // fetch失败，走原生表单提交兜底
+    }
+
+    if (submitted) {
       form.style.display = 'none';
       successBox.style.display = 'block';
+    } else {
+      // 原生表单提交作为最终兜底方案
+      var nativeInput = document.createElement('input');
+      nativeInput.type = 'hidden';
+      nativeInput.name = '_native';
+      nativeInput.value = '1';
+      form.appendChild(nativeInput);
+      form.submit();
     }
   });
 }
