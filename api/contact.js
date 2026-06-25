@@ -1,6 +1,9 @@
 // Vercel Serverless Function — 接收家教咨询
 // 优先邮件通知（Resend）→ 其次 Vercel Blob 存储
 
+// TODO: 删除此行，改为 Vercel 环境变量 RESEND_API_KEY
+var FALLBACK_RESEND_KEY = 're_c8yKcr4w_AswNCxqYcdDT46WRyAYeRQ4T';
+
 export default async function handler(req, res) {
   var origin = req.headers.origin || '';
   if (origin.includes('xuekefudao.cn') || origin.includes('app.codebuddy.work') || origin.includes('localhost')) {
@@ -40,7 +43,8 @@ async function handleGet(req, res) {
 
 // ========== 发送邮件通知（Resend） ==========
 async function sendEmailNotification(submission) {
-  if (!process.env.RESEND_API_KEY) return false;
+  var apiKey = process.env.RESEND_API_KEY || FALLBACK_RESEND_KEY;
+  if (!apiKey) return false;
   try {
     const subjectMap = { 'grade': '年级', 'subject': '科目', 'city': '城市', 'contact': '联系方式', 'note': '备注' };
     var text = '【学科辅导网】新咨询\n\n';
@@ -52,7 +56,7 @@ async function sendEmailNotification(submission) {
     var resp = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
-        'Authorization': 'Bearer ' + process.env.RESEND_API_KEY,
+        'Authorization': 'Bearer ' + apiKey,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -95,7 +99,7 @@ async function handlePost(req, res) {
     var stored = false;
 
     // 1. 优先：邮件通知
-    if (process.env.RESEND_API_KEY) {
+    if (process.env.RESEND_API_KEY || FALLBACK_RESEND_KEY) {
       var emailed = await sendEmailNotification(submission);
       if (emailed) stored = true;
     }
