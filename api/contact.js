@@ -3,6 +3,7 @@
 
 // TODO: 删除此行，改为 Vercel 环境变量 RESEND_API_KEY
 var FALLBACK_RESEND_KEY = 're_c8yKcr4w_AswNCxqYcdDT46WRyAYeRQ4T';
+var DEPLOY_TIME = '2026-06-25T10:20+08';
 
 export default async function handler(req, res) {
   var origin = req.headers.origin || '';
@@ -25,7 +26,7 @@ async function handleGet(req, res) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
   if (!process.env.BLOB_READ_WRITE_TOKEN) {
-    return res.status(200).json({ success: true, submissions: [], hint: 'Blob 存储未配置，提交通过邮件发送' });
+    return res.status(200).json({ success: true, submissions: [], hint: 'Blob 存储未配置，提交通过邮件发送', deployTime: DEPLOY_TIME });
   }
   try {
     const { list } = await import('@vercel/blob');
