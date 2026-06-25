@@ -61,7 +61,7 @@ async function sendEmailNotification(submission) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        from: '学科辅导网 <noreply@xuekefudao.cn>',
+        from: '学科辅导网 <onboarding@resend.dev>',
         to: [process.env.NOTIFY_EMAIL || 'fanjieboy@gmail.com'],
         subject: '【新咨询】' + (submission.grade || '') + '·' + (submission.subject || '') + ' — ' + (submission.city || ''),
         text: text
