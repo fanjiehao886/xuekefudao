@@ -125,15 +125,23 @@ async function handlePost(req, res) {
       console.warn('请配置 RESEND_API_KEY 或 BLOB_READ_WRITE_TOKEN 环境变量');
     }
 
-    if (isNative) {
+    // 检测是否浏览器原生表单提交（非 fetch/XHR）
+    var accept = (req.headers.accept || '').toLowerCase();
+    var isBrowserForm = !accept.includes('*/*') && accept.includes('text/html');
+    if (isNative || isBrowserForm) {
       res.setHeader('Location', '/?thanks=1');
       return res.status(302).end();
     }
     return res.status(200).json({ success: true, message: '提交成功！我们会尽快联系您。' });
   } catch (err) {
     console.error('handlePost error:', err);
-    var body = req.body || {};
-    if (body._native === '1') {
+    var bd = req.body || {};
+    if (bd._native === '1') {
+      res.setHeader('Location', '/?thanks=1');
+      return res.status(302).end();
+    }
+    // 浏览器原生表单提交：即使出错也跳回首页显示成功
+    if (bd.grade && bd.subject) {
       res.setHeader('Location', '/?thanks=1');
       return res.status(302).end();
     }

@@ -123,32 +123,42 @@ function initContactForm() {
     params.append('note', fd.get('note') || '');
 
     var submitted = false;
+    var errorMsg = '';
     try {
+      var controller = new AbortController();
+      var timeout = setTimeout(function() { controller.abort(); }, 15000);
       var res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: params.toString()
+        body: params.toString(),
+        signal: controller.signal
       });
-      if (res.ok) submitted = true;
+      clearTimeout(timeout);
+      if (res.ok) {
+        var data = await res.json();
+        if (data && data.success) submitted = true;
+      } else {
+        errorMsg = '服务器响应异常（' + res.status + '），请稍后重试';
+      }
     } catch (e) {
-      console.error('fetch 失败:', e);
+      if (e.name === 'AbortError') {
+        errorMsg = '请求超时，请检查网络后重试';
+      } else {
+        errorMsg = '网络连接失败，请检查网络后重试';
+      }
     }
 
     if (submitted) {
       form.style.display = 'none';
       successBox.style.display = 'block';
     } else {
-      // 原生表单提交兜底（默认 enctype=application/x-www-form-urlencoded）
       submitBtn.textContent = '免费提交，获取匹配方案';
       submitBtn.classList.remove('loading');
       submitBtn.disabled = false;
-
-      var nativeInput = document.createElement('input');
-      nativeInput.type = 'hidden';
-      nativeInput.name = '_native';
-      nativeInput.value = '1';
-      form.appendChild(nativeInput);
-      form.submit();
+      if (errorMsg) {
+        showError(contactInput, errorMsg);
+        contactInput.focus();
+      }
     }
   });
 }
@@ -206,6 +216,22 @@ function initNavbar() {
 
 // ========== 页面初始化 ==========
 document.addEventListener('DOMContentLoaded', function() {
+  // URL 参数检测：原生表单兜底提交完后跳转回来
+  if (window.location.search.indexOf('thanks=1') !== -1) {
+    var contactSection = document.getElementById('contact');
+    var formEl = document.getElementById('contactForm');
+    var successEl = document.getElementById('formSuccess');
+    if (contactSection && formEl && successEl) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+      formEl.style.display = 'none';
+      successEl.style.display = 'block';
+      // 清除 URL 参数，避免刷新后重复显示
+      var url = new URL(window.location.href);
+      url.searchParams.delete('thanks');
+      window.history.replaceState({}, '', url.toString());
+    }
+  }
+
   renderTeachers();
   initContactForm();
   initNavbar();
